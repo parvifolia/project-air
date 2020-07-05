@@ -12,3 +12,14 @@
 .delete-button{
     font-size: 0.8rem;
 }
+
+/* remove click event from little span, because different e.target values */
+.toggle-handle{
+    pointer-events: none;
+}
+
+/* complete a task */
+.line-through{
+    text-decoration: line-through;
+    color: darkgray;
+}

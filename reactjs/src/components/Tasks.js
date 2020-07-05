@@ -14,6 +14,17 @@ class Tasks extends Component {
         const id = e.target.getAttribute('id');
         this.props.deleteTask(id);
     }
+    handleCheck=(e)=>{
+        //find the task text's div
+        let text= e.target.parentElement.parentElement.parentElement.nextSibling;
+        text.classList.toggle("line-through")
+    }
+
+    // line through task if completed
+
+
+
+
     render() {
         return (
             <div>
@@ -24,8 +35,10 @@ class Tasks extends Component {
                             { this.props.tasks.map(task=>{
                                 return(
                                     <li className="list-group-item" key={task.id}>
-                                        <div className="d-flex w-100 justify-content-between">
-                                            <div className="text-center check-button"><input type="checkbox" data-toggle="toggle" data-on="<b>&check;</b>" data-onstyle="success" data-off="&check;" data-style="fast" /></div>
+                                        <div className="d-flex w-100 justify-content-between" >
+                                            <div className="text-center check-button" onClick={this.handleCheck}>
+                                                <input type="checkbox" data-toggle="toggle" data-on="&check;" data-onstyle="success" data-off="&check;" data-style="fast"  />
+                                            </div>
                                             <div className="pl-3 pr-3 task-text">{task.task}</div>
                                             <div className="text-center task-time">
                                                 <small>1 minute ago.</small><br/>
