@@ -21,5 +21,5 @@ from django.urls import include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('reactjs.urls')),
-    path('tasks/', include('modules.tasks.urls')),
+    path('', include('modules.tasks.urls')),
 ]

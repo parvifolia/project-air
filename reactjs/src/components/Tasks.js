@@ -1,6 +1,14 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import {connect} from 'react-redux';
+//import PropTypes from 'prop-types';
+import {getTasks} from '../actions/tasks';
 
-export default class Tasks extends Component {
+class Tasks extends Component {
+    componentDidMount(){
+
+        this.props.getTasks();
+
+    }
     render() {
         return (
             <div>
@@ -35,3 +43,11 @@ export default class Tasks extends Component {
         )
     }
 }
+
+const mapStateToProps= (state) => {
+    return {
+        tasks:state.tasksReducer.tasks
+    }
+}
+
+export default connect(mapStateToProps, { getTasks })(Tasks);

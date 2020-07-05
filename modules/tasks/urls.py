@@ -8,6 +8,6 @@ routers.register('api/tasks', TaskViewset, 'tasks')
 
 urlpatterns = routers.urls
 
-urlpatterns = [
-    path('', Tasks.as_view()),
-]
+# urlpatterns = [
+#     path('', Tasks.as_view()),
+# ]
