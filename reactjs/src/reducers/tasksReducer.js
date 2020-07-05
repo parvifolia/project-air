@@ -13,7 +13,13 @@ export default function (state=initialState,action) {
         return {
             ...state,
             tasks:state.tasks.filter(e=>e.id != action.payload)
-            }
+        }
+    }
+    else if (action.type ==='ADD_TASK') {
+        return {
+            ...state,
+            tasks:[...state.tasks, action.payload]
+        }
     }
     return state;
 }
