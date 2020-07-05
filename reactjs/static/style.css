@@ -1,0 +1,11 @@
+/* Tasks Component's CSS */
+
+.check-button{
+    min-width: 80px; align-self: center;
+}
+.task-text{
+    text-align: justify;
+}
+.task-time{
+    border-left:1px solid whitesmoke; min-width: 100px; align-self: center;
+}

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev":"webpack --mode development ./reactjs/src/index.js --output ./reactjs/static/main.js",
+    "dev":"webpack --mode development --watch ./reactjs/src/index.js --output ./reactjs/static/main.js",
     "build":"webpack --mode production ./reactjs/src/index.js --output ./reactjs/static/main.js"
   },
   "keywords": [],

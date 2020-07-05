@@ -8,8 +8,10 @@ class App extends Component {
         return (
             <div>
                 <h1>Hey :)</h1>
+                <div className="container-fluid text-dark">
                 <AddTask />
                 <Tasks />
+                </div>
             </div>
         )
     }
