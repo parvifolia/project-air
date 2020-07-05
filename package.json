@@ -1,0 +1,25 @@
+{
+  "name": "airties-wad-case-study",
+  "version": "1.0.0",
+  "description": "Requirements and dependencies of this repository is bootstrapped with [virtualenv](https://github.com/pypa/virtualenv) and [pip](https://pypi.org/project/pip/). ``` unzip airties-wad-case-study-master.zip && cd airties-wad-case-study-master virtualenv -p python3 .venv source .venv/bin/activate pip install -r requirements.txt ```",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-react": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12"
+  }
+}
