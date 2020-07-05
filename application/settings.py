@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     #local apps
     'modules.tasks',
+    'reactjs',
 
     #3rd apps
     'rest_framework',
