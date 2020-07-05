@@ -9,3 +9,6 @@
 .task-time{
     border-left:1px solid whitesmoke; min-width: 100px; align-self: center;
 }
+.delete-button{
+    font-size: 0.8rem;
+}
