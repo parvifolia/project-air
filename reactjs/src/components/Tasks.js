@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {getTasks,deleteTask} from '../actions/taskActions';
-import { formatDistanceToNow } from 'date-fns'
+import { formatDistanceToNow, format } from 'date-fns';
+import jsPDF from 'jspdf';
 
 
 class Tasks extends Component {
@@ -22,6 +23,21 @@ class Tasks extends Component {
         //find the task text's div
         let text= e.target.parentElement.parentElement.parentElement.nextSibling;
         text.classList.toggle("line-through")
+    }
+    printPdf=(e)=>{
+        const doc = new jsPDF();
+
+        // create a ordered list with i(index), add task content and date
+        const print= this.props.tasks.map((task,i)=>{
+            const time = new Date(task.created_at);
+            const date=format(time, 'kk:mm - MM/dd/yyyy')
+            i++;
+            return (i + ": " + task.task + " ~ " + date)
+        });
+        console.log(print)
+        doc.text(print, 10, 10)
+        doc.save('tasks.pdf')
+
     }
 
 
@@ -53,6 +69,7 @@ class Tasks extends Component {
                                 )
                             }) 
                             }
+                            <button className="btn btn-primary print-button" onClick={this.printPdf}>Print</button>
 
                         </ul>
                     </div>

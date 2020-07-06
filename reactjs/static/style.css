@@ -24,3 +24,9 @@
     text-decoration: line-through;
     color: darkgray;
 }
+
+.print-button{
+    width: 100px;
+    margin: auto;
+    margin-top: 5vh;
+}
