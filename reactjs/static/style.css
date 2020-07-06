@@ -1,14 +1,33 @@
 /* Tasks Component's CSS */
 
-.check-button{
+/* .check-button{
     min-width: 80px; align-self: center;
 }
+.checkbox {
+    transform: scale(1.5);
+} */
+.done-button{
+    border: 1px solid darkgray;
+    width: 50px;
+    background-color: lightgray;
+    border-radius: 10%;
+
+}
+.done-button-active{
+    background-color: palegreen;
+    font-weight: bold;
+}
+.done-button:focus{
+    outline:none;
+}
+
 .task-text{
     text-align: justify;
 }
 .task-time{
     border-left:1px solid whitesmoke; min-width: 100px; align-self: center;
     font-size: smaller;
+    max-width: 7vw;
 }
 .delete-button{
     font-size: smaller;
@@ -26,7 +45,7 @@
 }
 
 .print-button{
-    width: 100px;
-    margin: auto;
-    margin-top: 5vh;
+    width: 80px;
+    margin: 5vh auto;
+    transform: translateX(-25%);
 }

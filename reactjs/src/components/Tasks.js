@@ -21,8 +21,9 @@ class Tasks extends Component {
     }
     handleCheck=(e)=>{
         //find the task text's div
-        let text= e.target.parentElement.parentElement.parentElement.nextSibling;
-        text.classList.toggle("line-through")
+        let text= e.target.parentElement.nextSibling;
+        text.classList.toggle("line-through");
+        e.target.classList.toggle("done-button-active")
     }
     printPdf=(e)=>{
         const doc = new jsPDF();
@@ -55,9 +56,9 @@ class Tasks extends Component {
 
                                 return(
                                     <li className="list-group-item" key={task.id}>
-                                        <div className="d-flex w-100 justify-content-between" >
+                                        <div className="d-flex w-100 justify-content-between align-items-center" >
                                             <div className="text-center check-button" onClick={this.handleCheck}>
-                                                <input type="checkbox" data-toggle="toggle" data-on="&check;" data-onstyle="success" data-off="&check;" data-style="fast"  />
+                                                <button className="done-button">✓</button>
                                             </div>
                                             <div className="pl-3 pr-3 task-text">{task.task}</div>
                                             <div className="text-center task-time">
@@ -69,7 +70,13 @@ class Tasks extends Component {
                                 )
                             }) 
                             }
-                            <button className="btn btn-primary print-button" onClick={this.printPdf}>Print</button>
+
+                            {this.props.tasks.length ? (
+                                <button className="btn btn-primary print-button" onClick={this.printPdf}>Print</button>
+                            ) : (
+                                <span className="text-center my-5">There is no task yet.</span>
+                            )}
+                            
 
                         </ul>
                     </div>
