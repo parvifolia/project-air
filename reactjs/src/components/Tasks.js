@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {getTasks,deleteTask} from '../actions/taskActions';
+import { formatDistanceToNow } from 'date-fns'
+
 
 class Tasks extends Component {
 
@@ -9,8 +11,10 @@ class Tasks extends Component {
         this.props.getTasks();
     }
 
+
     // event listeners
     handleClick=(e)=>{
+        //send delete request with id
         const id = e.target.getAttribute('id');
         this.props.deleteTask(id);
     }
@@ -19,10 +23,6 @@ class Tasks extends Component {
         let text= e.target.parentElement.parentElement.parentElement.nextSibling;
         text.classList.toggle("line-through")
     }
-
-    // line through task if completed
-
-
 
 
     render() {
@@ -33,6 +33,10 @@ class Tasks extends Component {
                         <ul className="list-group list-group-flush">
                             
                             { this.props.tasks.map(task=>{
+                                //find the time since task added with date-fns package
+                                const time = new Date(task.created_at);
+                                const distanceTime=formatDistanceToNow(time, { addSuffix: true })
+
                                 return(
                                     <li className="list-group-item" key={task.id}>
                                         <div className="d-flex w-100 justify-content-between" >
@@ -41,7 +45,7 @@ class Tasks extends Component {
                                             </div>
                                             <div className="pl-3 pr-3 task-text">{task.task}</div>
                                             <div className="text-center task-time">
-                                                <small>1 minute ago.</small><br/>
+                                                <div>{distanceTime}</div>
                                                 <button id={task.id} className="btn btn-sm btn-danger delete-button" onClick={this.handleClick}>Delete</button>
                                             </div>
                                         </div>

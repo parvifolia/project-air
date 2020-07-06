@@ -8,9 +8,10 @@
 }
 .task-time{
     border-left:1px solid whitesmoke; min-width: 100px; align-self: center;
+    font-size: smaller;
 }
 .delete-button{
-    font-size: 0.8rem;
+    font-size: smaller;
 }
 
 /* remove click event from little span, because different e.target values */
