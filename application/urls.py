@@ -22,4 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('reactjs.urls')),
     path('', include('modules.tasks.urls')),
+    path('', include('accounts.urls'))
 ]
