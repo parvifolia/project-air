@@ -10,7 +10,6 @@ class Header extends Component {
 
     const { isAuthenticated, user } = this.props.auth;
 
-
     const guestNavbar= (
         <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
         <li className="nav-item">
@@ -28,6 +27,9 @@ class Header extends Component {
 
     const userNavbar = (
         <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
+        <span className="navbar-text mr-4">
+            {user ? `Hello, ${user.username} :)` : ''}
+        </span>
         <li className="nav-item">
             <button onClick={this.props.logout} className="nav-link btn btn-secondary btn-sm text-light">Logout</button>
         </li>
@@ -43,7 +45,7 @@ class Header extends Component {
                     </a>
                 </div>
 
-                {isAuthenticated ?  userNavbar :guestNavbar}
+                {isAuthenticated ?  userNavbar : guestNavbar}
 
             </div>
         </nav>

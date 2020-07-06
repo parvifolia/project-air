@@ -16,7 +16,6 @@ class AddTask extends Component {
     }
     handleSubmit= e=>{
         e.preventDefault();
-        console.log(this.state)
         const { task,is_completed } = this.state;
         const newTask = {task,is_completed}
         this.props.addTask(newTask)

@@ -22,9 +22,10 @@ export default function (state = initialState, action) {
     }
     // remove token from local storage and set everthing to default initialState
     else if ( 
-            (action.type === "AUTH_ERROR") 
-            || (action.type === "LOGIN_FAIL") 
-            || (action.type === "LOGOUT_SUCCESS") 
+        (action.type === "AUTH_ERROR") 
+        || (action.type === "LOGIN_FAIL") 
+        || (action.type === "LOGOUT_SUCCESS")
+        || (action.type === "REGISTER_FAIL")
         ){
         localStorage.removeItem("token");
         return {
@@ -35,8 +36,11 @@ export default function (state = initialState, action) {
             user:null,
         }
     }
-    // user login, put token to local storage
-    else if (action.type === "LOGIN_SUCCESS"){
+    // user login or register, put token to local storage
+    else if (
+        (action.type === "LOGIN_SUCCESS") 
+        || (action.type === "REGISTER_SUCCESS")  
+        ){
         localStorage.setItem("token",action.payload.token);
         return {
             ...state,

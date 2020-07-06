@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link,Redirect } from 'react-router-dom';
+import {connect} from 'react-redux';
+import {register} from '../../actions/auth';
 
 
-export default class Register extends Component {
+class Register extends Component {
 
     state={
         username:'',
@@ -11,13 +13,24 @@ export default class Register extends Component {
         passwordCheck:''
     }
 
-    onChange = e => this.setState({ [e.target.name]: e.target.value });
+    onSubmit = e=>{
+      e.preventDefault();
+      const {username, email, password,passwordCheck} = this.state;
+      if(password !== passwordCheck){
+        alert("Passwords must be equal, please try again!")
+      } else {
+
+        this.props.register({username,password,email})
+      }
+    }
+
+    onChange = e=> this.setState({ [e.target.name]: e.target.value });
 
 
     render() {
-        // if (this.props.isAuthenticated) {
-        //   return <Redirect to="/" />;
-        // }
+        if (this.props.isAuthenticated) {
+          return <Redirect to="/" />;
+        }
         const { username, email, password, passwordCheck } = this.state;
         return (
           <div className="col-md-6 m-auto">
@@ -78,3 +91,9 @@ export default class Register extends Component {
         );
     }
 }
+
+const mapStateToProps = state =>({
+  isAuthenticated:state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps,{register})(Register);
