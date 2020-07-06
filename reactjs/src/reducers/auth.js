@@ -9,19 +9,23 @@ export default function (state = initialState, action) {
     if (action.type === "USER_LOADING"){
         return {
             ...state,
-            isLoading: true
+            isLoading: true,
         }
     }
     else if (action.type === "USER_LOADED"){
         return {
             ...state,
             isAuthenticated:true,
-            isLoading: true,
+            isLoading: false,
             user: action.payload
         }
     }
     // remove token from local storage and set everthing to default initialState
-    else if (action.type === "AUTH_ERROR"){
+    else if ( 
+            (action.type === "AUTH_ERROR") 
+            || (action.type === "LOGIN_FAIL") 
+            || (action.type === "LOGOUT_SUCCESS") 
+        ){
         localStorage.removeItem("token");
         return {
             ...state,
@@ -29,6 +33,16 @@ export default function (state = initialState, action) {
             isAuthenticated:false,
             isLoading: false,
             user:null,
+        }
+    }
+    // user login, put token to local storage
+    else if (action.type === "LOGIN_SUCCESS"){
+        localStorage.setItem("token",action.payload.token);
+        return {
+            ...state,
+            ...action.payload,
+            isAuthenticated:true,
+            isLoading:false,
         }
     }
     else {
