@@ -34,9 +34,9 @@ class Register extends Component {
         const { username, email, password, passwordCheck } = this.state;
         return (
           <div className="col-md-6 m-auto">
-            <div className="card card-body mt-5">
-              <h2 className="text-center">Register</h2>
-              <form onSubmit={this.onSubmit}>
+            <div className="card card-body mt-3">
+              <h2 className="text-center mb-5 ">Register</h2>
+              <form className="text-center" onSubmit={this.onSubmit}>
                 <div className="form-group">
                   <label>Username</label>
                   <input

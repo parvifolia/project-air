@@ -58,7 +58,7 @@ class AddTask extends Component {
                                 <button type='submit' className="btn btn-primary d-none">Hidden submit button for submit with enter</button>
                             </form>
                             <small className="form-text text-muted text-center mt-2"><b>🛎️ Tip:</b> Please press <kbd>↵</kbd> key to automaticly create a task.</small> 
-                            <small className="form-text text-muted text-center">You can add tags if you want.(optional)</small> 
+                            <small className="form-text text-muted text-center">You can add tags if you want.(optional, max 20 char.)</small> 
 
                             <div className="invalid-feedback"></div>
                         </div>
