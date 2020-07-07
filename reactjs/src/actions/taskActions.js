@@ -39,3 +39,14 @@ export const deleteTask = (id) => (dispatch,getState) => {
 
 
 
+// UPDATE_TASK Action
+export const updateTask = (task,id) => (dispatch,getState) => {
+    axios.put(`/api/tasks/${id}/`,task,tokenConfig(getState))
+    .then(res=>{
+        dispatch({
+            type : "UPDATE_TASK",
+            payload : res.data,
+        });
+    })  
+    .catch(err=>console.log(err))
+}

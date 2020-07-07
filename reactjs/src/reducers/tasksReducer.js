@@ -21,5 +21,11 @@ export default function (state=initialState,action) {
             tasks:[...state.tasks, action.payload]
         }
     }
+    else if (action.type ==='UPDATE_TASK') {
+        return {
+            ...state,
+            tasks:[...state.tasks, action.payload]
+        }
+    }
     return state;
 }
