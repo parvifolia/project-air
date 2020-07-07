@@ -39,7 +39,13 @@ class AddTask extends Component {
         const newTask = {task,tag1, tag2, tag3,is_completed} ;
         this.props.addTask(newTask);
 
-        
+        this.setState({
+            task:'',
+            tag1:'',
+            tag2:'',
+            tag3:'',
+            is_completed:false
+        });
 
     }
 
@@ -52,11 +58,11 @@ class AddTask extends Component {
                     <div className="col-8 offset-2">
                         <div className="form-group mt-3 text-center">
                             <form onSubmit={this.handleSubmit}>
-                                <input onChange={this.handleChangeTask} autoComplete="off" name="task" type="text" className="form-control" placeholder="Task to be done.."/>
+                                <input onChange={this.handleChangeTask} value={this.state.task} autoComplete="off" name="task" type="text" className="form-control" placeholder="Task to be done.."/>
                                 <div className='d-flex mt-2'>
-                                <input onChange={this.handleChangeTag1} autoComplete="off" name="Tag1" type="text" className="form-control" placeholder="#tag1"/>
-                                <input onChange={this.handleChangeTag2} autoComplete="off" name="Tag2" type="text" className="form-control mx-2" placeholder="#tag2"/>
-                                <input onChange={this.handleChangeTag3} autoComplete="off" name="Tag3" type="text" className="form-control" placeholder="#tag3"/>
+                                <input onChange={this.handleChangeTag1} value={this.state.tag1} autoComplete="off" name="Tag1" type="text" className="form-control" placeholder="#tag1"/>
+                                <input onChange={this.handleChangeTag2} value={this.state.tag2} autoComplete="off" name="Tag2" type="text" className="form-control mx-2" placeholder="#tag2"/>
+                                <input onChange={this.handleChangeTag3} value={this.state.tag3} autoComplete="off" name="Tag3" type="text" className="form-control" placeholder="#tag3"/>
                                 </div>
                                 <button type='submit' className="btn btn-primary d-none">Hidden submit button for submit with enter</button>
                             </form>
