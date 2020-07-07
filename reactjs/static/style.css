@@ -11,19 +11,19 @@
     width: 50px;
     background-color: lightgray;
     border-radius: 10%;
-
+    transition: all 0.5s ease;
+}
+.done-button:hover{
+    filter: brightness(115%);
 }
 .done-button-active{
-    background-color: palegreen;
+    background-color: rgb(135, 224, 135);
     font-weight: bold;
 }
 .done-button:focus{
     outline:none;
 }
 
-.task-text{
-    text-align: justify;
-}
 .task-time{
     border-left:1px solid whitesmoke; min-width: 100px; align-self: center;
     font-size: smaller;
@@ -33,10 +33,6 @@
     font-size: smaller;
 }
 
-/* remove click event from little span, because different e.target values */
-.toggle-handle{
-    pointer-events: none;
-}
 
 /* complete a task */
 .line-through{
@@ -48,4 +44,40 @@
     width: 80px;
     margin: 5vh auto;
     transform: translateX(-25%);
+}
+
+.tags{
+    display: flex;
+    width: 100%;
+    margin: auto;
+    justify-content: center;
+    transition: all 0.5s ease;
+
+}
+.tagbox{
+    color: white;
+    margin: 0 10px;
+    min-width: 40px;
+    padding: 2px 5px;
+    border-radius: 10%;
+    transition: all 0.5s ease;
+    opacity: 1;
+
+}
+.tagbox:hover{
+    filter: brightness(120%);
+}
+.tagbox-1{
+    background-color: rgb(167, 91, 91);
+}
+.tagbox-2{
+    background-color: rgb(19, 80, 117);
+}
+.tagbox-3{
+    background-color: rgb(41, 143, 101);
+}
+.tagbox-unactive{
+    opacity: 0.3;
+    /* background-color: darkgray;
+    color: rgb(85, 85, 85); */
 }

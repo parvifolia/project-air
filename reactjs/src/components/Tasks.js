@@ -24,6 +24,11 @@ class Tasks extends Component {
         let text= e.target.parentElement.nextSibling;
         text.classList.toggle("line-through");
         e.target.classList.toggle("done-button-active")
+
+        //find the tags div
+        let tag= e.target.parentElement.nextSibling.children[0];
+        console.log(tag)
+        tag.classList.toggle("tagbox-unactive")
     }
     printPdf=(e)=>{
         const doc = new jsPDF();
@@ -46,7 +51,7 @@ class Tasks extends Component {
         return (
             <div>
                 <div className="row">
-                    <div className="col-6 offset-3">
+                    <div className="col-8 offset-2">
                         <ul className="list-group list-group-flush">
                             
                             { this.props.tasks.map(task=>{
@@ -60,10 +65,18 @@ class Tasks extends Component {
                                             <div className="text-center check-button" onClick={this.handleCheck}>
                                                 <button className="done-button">✓</button>
                                             </div>
-                                            <div className="pl-3 pr-3 task-text">{task.task}</div>
+                                            <div className="w-100 pl-3 pr-3 text-center task-text">
+                                                {task.task}
+                                                <div className="tags mt-2">
+                                                    {task.tag1 ? (<div className="tagbox tagbox-1">{task.tag1}</div>):(null) }
+                                                    {task.tag2 ? (<div className="tagbox tagbox-2">{task.tag2}</div>):(null) }
+                                                    {task.tag3 ? (<div className="tagbox tagbox-3">{task.tag3}</div>):(null) }
+
+                                                </div>
+                                            </div>
                                             <div className="text-center task-time">
                                                 <div>{distanceTime}</div>
-                                                <button id={task.id} className="btn btn-sm btn-danger delete-button" onClick={this.handleClick}>Delete</button>
+                                                <button id={task.id} className="btn btn-sm btn-danger delete-button mt-2" onClick={this.handleClick}>Delete</button>
                                             </div>
                                         </div>
                                     </li>
