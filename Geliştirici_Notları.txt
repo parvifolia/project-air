@@ -3,25 +3,10 @@ Merhaba,
 Projede değiştirdiğim birkaç noktayı ve sebebini not düşmek istedim.
 
 1. Projeyi frontend yönünde Reactjs, backend yönünde django-Rest-Framework ile geliştirdim.
-    react.js klasöründe react uygulamasını,
-    modules/tasks'da ise REST API yazarak aynı 2 istasyon kurdum ve redux ile iletişim sağladım.
+    react.js klasöründe React uygulamasını, modules/tasks'da ise REST API yazarak 
+    ayrı 2 istasyon kurdum ve React-Redux ile iletişim sağladım.
 
-
-2. Jquery butonu React ile uyumlu çalışmıyor, component güncellendiğinde buton checkbox olarak geliyordu.
+2. Jquery butonu React ile uyumlu çalışmıyor, component güncellendiğinde yeni task checkbox olarak geliyor,
 Eski bir kütüphane olduğu için projeden kaldırıp, şık ve benzer bir buton tasarlayarak projeye dahil ettim.
 
-3. Tüm istekleri yerine getirdim, ancak küçük bir noktada takıldığım için bu kısmı deaktif ederek 
-    projeyi yolluyorum.
-
-    Uzun süre üzerine emek verdim ancak Uptade request'imde mevcut görevin bir kopyasını oluşturuyordu.
-    Bu sebeple UPDATE_TASK fonksiyonunu devre dışı bıraktım,
-    ancak kodları yorum satırı haline getirerek projede tutuyorum, isteğe kadar olan flow'u takip edebilirsiniz.
-    Profesyonel bir yazılımcı muhtemelen tek satır kodla bu hatayı düzeltebilirdi,
-    ancak zamanım kısıtlı olduğu için projeyi en azından yayınlanmaya hazır bir duruma getirip,
-    gönderme kararını aldım.
-
-    Bahsettiğim sebep olduğu tek sorun;
-    Tamamlanmış görevler sadece UI & State tarafında güncelleniyor ve server'a gönderilmiyor.
-    Böylece sayfayı yenilediğinizde tüm görevleri tamamlanmamış şekilde yüklüyor.
-
-4. Projeyi git sistemi kullanarak geliştirdim. Proje aşamalarını git commit'lerinden takip edebilirsiniz.
+3. Projeyi git sistemi kullanarak geliştirdim. Proje aşamalarını git commit'lerinden takip edebilirsiniz.

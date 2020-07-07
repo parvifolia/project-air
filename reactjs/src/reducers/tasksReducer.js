@@ -22,9 +22,19 @@ export default function (state=initialState,action) {
         }
     }
     else if (action.type ==='UPDATE_TASK') {
+        // Find the target taks & replace updated task instead
+        let updatedStateTasks = state.tasks.map(e=>{
+            if (e.id == action.payload.id) {
+                return action.payload
+            }
+            else{
+                return e
+            }
+        })
+
         return {
             ...state,
-            tasks:[...state.tasks, action.payload]
+            tasks:updatedStateTasks
         }
     }
     return state;

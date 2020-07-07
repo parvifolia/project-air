@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import {getTasks,deleteTask,updateTask} from '../actions/taskActions';
 import { formatDistanceToNow, format } from 'date-fns';
 import jsPDF from 'jspdf';
-import { id } from 'date-fns/locale';
 
 
 class Tasks extends Component {
@@ -13,24 +12,43 @@ class Tasks extends Component {
         tag1:'',
         tag2:'',
         tag3:'',
-        is_completed:false
+        is_completed:false,
     }
 
-    // requested data when component builded
+    // Requested data when component builded
     componentDidMount(){
+        // Request Tasks
         this.props.getTasks();
-        
+
+        // Wait for tasks to load
+        setTimeout(() => {
+            // Check the State and if there is completed task, update UI
+            this.props.tasks.map(task=>{
+            if (task.is_completed === true){
+
+            // Find the task's div
+            let taskDiv= document.getElementById(task.id);
+
+            // Change status of the button to active
+            taskDiv.children[0].children[0].classList.toggle("done-button-active")
+            // Tags unactive
+            taskDiv.children[1].children[0].classList.toggle("tagbox-unactive")
+            // Text line-through
+            taskDiv.children[1].classList.toggle("line-through");
+        }
+    })
+        }, 500);
     }
 
-    // event listeners
+
+    // EVENT LISTENERS //
     handleClick=(e)=>{
-        //send DELETE request with id
+        // Send DELETE request with id
         const id = e.target.getAttribute('name');
         this.props.deleteTask(id);
     }
     handleCheck=(e)=>{        
-
-        //find the task text's & tags div and update UI 
+        // find the task text's & tags div and update UI 
         let text= e.target.parentElement.nextSibling;
         text.classList.toggle("line-through");
         e.target.classList.toggle("done-button-active")
@@ -38,18 +56,19 @@ class Tasks extends Component {
         let tag= e.target.parentElement.nextSibling.children[0];
         tag.classList.toggle("tagbox-unactive")
 
+        // UPDATE FUNC
 
-
-        // send UPDATE Request to API
+        // Find the target task's ID to uptade
         const targetId = e.target.parentElement.parentElement.getAttribute('id');
 
+        // Find the target task & store in a variable
         const tasks= this.props.tasks
         const updatedTask=tasks.filter(e=>{
             return e.id==targetId
         })
         const sendUpdatedTask = updatedTask[0];
 
-        // change is_completed boolean and set the state
+        // Change is_completed boolean and set the state
         this.setState({
             id: sendUpdatedTask.id,
             task:sendUpdatedTask.task,
@@ -59,35 +78,14 @@ class Tasks extends Component {
             is_completed: !sendUpdatedTask.is_completed
         })
 
-        // I sent new data on componentDidUpdate function
+
+        // Wait the State & send UPDATE Request to API
+        setTimeout(() => {
+            this.props.updateTask(this.state,targetId)
+        }, 500);
 
     }
 
-    componentDidUpdate(){
-        // UPDATE new data when state ready
-
-        //// find the target completed task
-
-        //const targetId = e.target.parentElement.parentElement.getAttribute('id');
-        //this.props.updateTask(this.state,targetId)
-
-        // check the State and if there is completed task, update UI
-        // this.props.tasks.map(task=>{
-        //     if (task.is_completed === true){
-
-        //         //find the task's div
-        //         let taskDiv= document.getElementById(task.id);
-
-        //         // change status of the button to active
-        //         taskDiv.children[0].children[0].classList.toggle("done-button-active")
-        //         // tags unactive
-        //         taskDiv.children[1].children[0].classList.toggle("tagbox-unactive")
-        //         //text line-through
-        //         taskDiv.children[1].children[0].classList.toggle("line-through")
-        //     }
-        // })
-
-    }
 
     printPdf=(e)=>{
         const doc = new jsPDF();
@@ -114,7 +112,7 @@ class Tasks extends Component {
                         <ul className="list-group list-group-flush">
                             
                             { this.props.tasks.map(task=>{
-                                //find the time since task added with date-fns package
+                                // Find the time since task added with date-fns package
                                 const time = new Date(task.created_at);
                                 const distanceTime=formatDistanceToNow(time, { addSuffix: true })
 

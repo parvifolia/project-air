@@ -11,7 +11,8 @@ class AddTask extends Component {
         tag3:'',
         is_completed:false
     }
-    //event listeners
+
+    // EVENT LISTENERS //
     handleChangeTask= e=>{
         this.setState({
             task:e.target.value
@@ -35,8 +36,10 @@ class AddTask extends Component {
     handleSubmit= e=>{
         e.preventDefault();
         const { task, tag1, tag2, tag3,is_completed } = this.state;
-        const newTask = {task,tag1, tag2, tag3,is_completed}
-        this.props.addTask(newTask)
+        const newTask = {task,tag1, tag2, tag3,is_completed} ;
+        this.props.addTask(newTask);
+
+        
 
     }
 
