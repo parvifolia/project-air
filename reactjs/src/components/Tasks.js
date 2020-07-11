@@ -17,29 +17,38 @@ class Tasks extends Component {
 
     // Requested data when component builded
     componentDidMount(){
-        // Request Tasks
+        // Request Tasks    
         this.props.getTasks();
 
-        // Wait for tasks to load
-        setTimeout(() => {
-            // Check the State and if there is completed task, update UI
-            this.props.tasks.map(task=>{
-            if (task.is_completed === true){
 
-            // Find the task's div
-            let taskDiv= document.getElementById(task.id);
 
-            // Change status of the button to active
-            taskDiv.children[0].children[0].classList.toggle("done-button-active")
-            // Tags unactive
-            taskDiv.children[1].children[0].classList.toggle("tagbox-unactive")
-            // Text line-through
-            taskDiv.children[1].classList.toggle("line-through");
-        }
-    })
-        }, 500);
     }
 
+    componentDidUpdate(){
+        this.updateUiWhenTasksLoaded()
+    }
+
+    updateUiWhenTasksLoaded = () =>{
+        // Check the State and if there is completed task, update UI
+        this.props.tasks.map(task=>{
+            if (task.is_completed === true){
+                // Find the task's div
+                let taskDiv= document.getElementById(task.id);
+
+                // Change status of the button to active
+                taskDiv.children[0].children[0].classList.toggle("done-button-active")
+                // Tags unactive
+                taskDiv.children[1].children[0].classList.toggle("tagbox-unactive")
+                // Text line-through
+                taskDiv.children[1].classList.toggle("line-through");
+            }
+        })
+
+        // Only invoke once function
+        this.updateUiWhenTasksLoaded = function(){};
+
+    };
+    
 
     // EVENT LISTENERS //
     handleClick=(e)=>{
@@ -76,13 +85,10 @@ class Tasks extends Component {
             tag2:sendUpdatedTask.tag2,
             tag3:sendUpdatedTask.tag3,
             is_completed: !sendUpdatedTask.is_completed
-        })
-
-
-        // Wait the State & send UPDATE Request to API
-        setTimeout(() => {
-            this.props.updateTask(this.state,targetId)
-        }, 500);
+        }, (e=>{
+            // After the State updated, send UPDATE Request to API
+            this.props.updateTask(this.state,targetId);
+        }))
 
     }
 
