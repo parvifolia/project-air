@@ -20,8 +20,6 @@ class Tasks extends Component {
         // Request Tasks    
         this.props.getTasks();
 
-
-
     }
 
     componentDidUpdate(){
@@ -29,7 +27,7 @@ class Tasks extends Component {
     }
 
     updateUiWhenTasksLoaded = () =>{
-        // Check the State and if there is completed task, update UI
+        // Check the State and if there is completed task, update UI. Remove Func & Take the lead on UI
         this.props.tasks.map(task=>{
             if (task.is_completed === true){
                 // Find the task's div

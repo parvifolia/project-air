@@ -20,3 +20,7 @@ Also, users can add tags to task if they want. Users can get a PDF document that
 7. python manage.py migrate
 6. python manage.py runserver
 7. ready on 127.0.0.1:8000
+
+## Quick review of how it is work
+
+[Go to Youtube Video](https://youtu.be/c3r_Bkc5NmM)
